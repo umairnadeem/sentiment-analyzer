@@ -7,7 +7,7 @@ const getSentiment = query => {
   let comments = [];
 
   query = query.replace(/\s/g, '%20');
-  
+
   return axios.get(`https://www.reddit.com/search.json?q=${query}&sort=top&limit=10`, 'grant_type=client_credentials')
     .then(res => {
       return res.data.data.children
@@ -23,7 +23,8 @@ const getSentiment = query => {
     .then(results => {
       let score = 0;
       let count = 0;
-  
+      const adj = 30;
+
       results.forEach(result => {
         result.data.forEach(list => {
           list.data.children.forEach(child => {
@@ -33,13 +34,18 @@ const getSentiment = query => {
       });
       comments.forEach(comment => {
         let result = sentiment.analyze(comment);
+
         count += result.score ? 1 : 0;
         score += result.score / (result.words.length || 1);
       });
-      return new Promise(resolve => resolve(score/count * 20));
+      
+      score = score / count * 20 * (100 / adj);
+      return new Promise(resolve => resolve(score));
     })
     .catch(err => console.error(err));
 };
 
-getSentiment('elon musk')
-  .then(res => console.log(res));
+// getSentiment('cocaine')
+//   .then(res => console.log(res));
+
+module.exports = getSentiment;
