@@ -3,6 +3,7 @@ import axios from 'axios';
 import Sentiment from './Sentiment.jsx';
 import TimeSeries from './TimeSeries.jsx';
 import Words from './Words.jsx';
+import BarChart from './BarChart.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -48,8 +49,9 @@ class App extends React.Component {
             <input type='text' autoComplete="off" id='query' onChange={this.handleChange} autoFocus></input>
             <button id='submit' onClick={this.handleSubmit}>Go</button>
           </div>
-          {showSentiment && <Sentiment sentiment={sentiment}/>}
+          {showSentiment && <Sentiment sentiment={sentiment} data={this.state.data}/>}
           {showSentiment && <Words data={this.state.data}/>}
+          {<BarChart data={this.state.data}/>}
         </div>
       </div>
     );

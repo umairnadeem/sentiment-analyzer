@@ -37,7 +37,8 @@ const getSentiment = query => {
                 data.push({
                   score: adjScore.toFixed(2),
                   words: result.words,
-                  date: +child.data.created_utc * 1000
+                  date: +child.data.created_utc * 1000,
+                  string: child.data.body
                 });
               }
             }

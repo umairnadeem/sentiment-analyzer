@@ -32,7 +32,7 @@ class Word extends React.Component {
     this.setState({ style: { 
       bottom: 200 + Math.random() * 200, 
       transition: 'bottom 4s ease',
-      left: Math.random()*(document.body.clientWidth - 50) + 50,
+      left: Math.random()*(document.body.clientWidth - 100) + 100,
       fontSize: `${12 + Math.abs(this.props.score) * 10}px`,
       color: this.props.score > 0 ? 'green' : 'red'
     }}, () => setTimeout(() => {

@@ -7,9 +7,8 @@ class Words extends React.Component {
   }
 
   render() {
-    let words = this.props.data.map((elem, x) => elem.words.map((word, y) => <Word key={`${x} ${y}`} word={word} score={elem.score} delay={x*3000}/>));
+    let words = this.props.data.map((elem, x) => elem.words.map((word, y) => <Word key={`${x} ${y}`} word={word} score={elem.score} delay={x*4000*Math.random()}/>));
     words = [].concat(...words);
-    console.log(words)
     return (
       <div id='floating-words'>
         {words}
