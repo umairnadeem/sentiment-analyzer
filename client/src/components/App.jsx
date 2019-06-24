@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Sentiment from './Sentiment.jsx';
+import TimeSeries from './TimeSeries.jsx';
+import Words from './Words.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,6 +10,7 @@ class App extends React.Component {
 
     this.state = {
       sentiment: 0,
+      data: [],
       showSentiment: false
     };
 
@@ -18,9 +21,10 @@ class App extends React.Component {
   handleSubmit() {
     axios.get(`/api/${this.state.query}/sentiment`)
       .then(res => this.setState({ 
-        sentiment: res.data.sentiment,
+        sentiment: res.data.score,
+        data: res.data.data,
         showSentiment: true
-      }))
+      }, () => console.log(this.state.data)))
       .catch(err => console.error(err));
   }
 
@@ -34,13 +38,19 @@ class App extends React.Component {
     let { sentiment, showSentiment } = this.state;
 
     return (
-      <div>
-        <div id='form'>
-          <label>Sentimentalyze</label>
-          <input type='text' id='query' onChange={this.handleChange}></input>
-          <button id='submit' onClick={this.handleSubmit}>Go</button>
+      <div className='container'>
+        {showSentiment && <TimeSeries data={this.state.data}/>}
+        <div className='flex'>
+          <div className='form'>
+            <h2>SENTIMENTALYZE<span>.io</span></h2>
+          </div>
+          <div className='search'>
+            <input type='text' autoComplete="off" id='query' onChange={this.handleChange} autoFocus></input>
+            <button id='submit' onClick={this.handleSubmit}>Go</button>
+          </div>
+          {showSentiment && <Sentiment sentiment={sentiment}/>}
+          {showSentiment && <Words data={this.state.data}/>}
         </div>
-        {showSentiment && <Sentiment sentiment={sentiment}/>}
       </div>
     );
   }

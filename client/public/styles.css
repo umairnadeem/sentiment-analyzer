@@ -1,0 +1,133 @@
+@font-face {
+  font-family: "Bodoni Bold Italic";
+  src: url('./fonts/Bodoni\ Bold\ Italic.otf') format("opentype");
+}
+
+html {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: "Bodoni Bold Italic";
+  color: #fff;
+  background: url('./img/canvas_texture.png')#eca7c0;
+}
+
+h2 {
+  font-size: 60px;
+  font-weight: 100;
+  -webkit-text-stroke-width: .3px;
+  -webkit-text-stroke-color: rgba(0, 0, 0, 0);
+  margin: 0;
+  animation: h2change 0.5s;
+}
+
+h2 span {
+  font-size: 40px;
+  color: #d6d6d6;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#sentiment {
+  text-align: center;
+}
+
+#time-series {
+  position: fixed;
+  top: 100px;
+  width: 100%;
+}
+
+#time-series line {
+  stroke: rgb(255,0,0);
+  stroke-width:2;
+}
+
+#floating-words {
+  display: block;
+}
+
+.point {
+  position: relative;
+}
+
+.popup text {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #fff;
+  background-color: #fff;
+  text-transform: uppercase;
+  -webkit-text-stroke-width: .3px;
+}
+
+.word {
+  position: fixed;
+  opacity: 0;
+  animation: 4s ease-out 0s 1 slideIn;
+}
+
+#submit {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+  background: url('img/texture_small.png');
+  background-color: #d6d6d6;
+  text-transform: uppercase;
+  -webkit-text-stroke-width: .3px;
+  border: none;
+  display: block;
+  width: 30%;
+  height: 48px;
+  cursor: pointer;
+  margin: 0 auto;
+  line-height: 1.15;
+  letter-spacing: 2px;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+#submit:hover{
+  background-color: #666666;
+}
+
+
+#query {
+  font-family: inherit;
+  text-transform: uppercase;
+  font-size: 25px;
+  text-align: center;
+  background-color:rgba(0, 0, 0, 0);
+  color:#d6d6d6;
+  border: none;
+  outline:none;
+  height:30px;
+  transition:height 1s;
+  -webkit-transition:height 1s;
+  margin: 5px;
+}
+
+@keyframes slideIn {
+  from {
+    bottom: 0;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 800;
+    opacity: 0;
+  }
+}
+
+@keyframes h2change {
+  0%   { letter-spacing: 7px; }
+  100%   { letter-spacing: 0.1px; }
+}

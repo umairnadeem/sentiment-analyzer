@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, '../client/public')));
 
 app.get('/api/:query/sentiment', (req, res) => {
   getSentiment(req.params.query)
-    .then(sentiment => res.send({ sentiment }));
+    .then(data => res.send(data));
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
